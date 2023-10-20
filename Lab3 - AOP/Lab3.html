@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+    <head>
+       <title>Lab 3</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </head>
+    <body style="max-width:600px;">
+
+		<h1>Documentation</h1>
+		<ul>
+			<li><a href="http://eclipse.org/aspectj/">AspectJ</a></li>		
+			<li><a href="./Lecture_examples/">Lecture examples</a></li>
+		</ul>
+		
+		<h1>Telecom</h1>
+		<h2>Basic version</h2>
+		<p><em>Telecom</em> (<a href="./telecomOO.zip">telecomOO.zip</a>) is a simple simulation of a telephony system in which customers make, accept, merge and hang-up both local and long distance calls. The structure of Telecom is presented in the figure below as a UML class diagram. The initial version comprises the classes Customer, Call and the abstract class Connection with its two concrete subclasses Local and LongDistance. Customers have a name and a numeric area code. They also have methods for managing calls. Simple calls are made between one customer (the caller) and another (the receiver), a Connection object is used to connect them. Conference calls between more than two customers will involve more than one connection. A customer may be involved in many calls at one time.<br /> 
+		<img src="./telecom_OO_0.png" alt='basic' />
+		<ul>
+			<li><code>Customer</code> has methods <code>call, pickup, hangup</code> and <code>merge</code> for managing calls. </li>			
+			<li><code>Call</code> is created with a caller and receiver who are customers. If the caller and receiver have the same area code then the call can be established with a <code>Local</code> connection (see below), otherwise a <code>LongDistance</code> connection is required. A call comprises a number of connections between customers. Initially there is only the connection between the caller and receiver but additional connections can be added if calls are merged to form conference calls. </li>
+			<li><code>Connection</code> models the physical details of establishing a connection between customers. It does this with a simple state machine (connections are initially <code>PENDING</code>, then <code>COMPLETED</code> and finally <code>DROPPED</code>). Connection is an abstract class with two concrete subclasses: <code>Local</code> and <code>LongDistance</code>.</li>
+		</ul>
+		</p>
+		<p>
+		<h2>Change scenarios:</h2>
+		<ul>
+			<li><em>Timing concern</em> measures the total connection time per customer. It starts a timer when a connection is completed and stops the timer when the connection is dropped. Then, it updates the accumulated connection time for the caller.<pre><code>
+[...]
+connection from Jim(650) to Crista(415) dropped
+Jim(650) has been connected for 6 seconds
+Crista(415) has been connected for 2 seconds
+Mik(650) has been connected for 4 seconds
+</code></pre>			
+			</li>
+			<li><em>Billing concern</em> adds billing functionality to the telecom application on top of timing.
+			charges customers for the calls they make. It calculates a charge per connection and, upon termination of a connection, adds the charge to the appropriate customer's bill. Billing depends on timing and on the type of the connection (<code>LOCAL_RATE = 3, LONG_DISTANCE_RATE = 10</code>).<pre><code>
+[...]
+connection from Jim(650) to Crista(415) dropped
+Jim(650) has been connected for 6 seconds and has a bill of 32
+Crista(415) has been connected for 2 seconds and has a bill of 6
+Mik(650) has been connected for 4 seconds and has a bill of 0
+</code></pre>				
+			</li>
+		</ul>
+		<h2>Suggested solutions for the Timing change scenario</h2>
+		<ul>
+			<li>OO version<br /><img src="./telecom_OO_1.png" alt='timing' /></li>
+			<li>AO version<br />
+			<code>Timing</code> aspect declares that each <code>Connection</code> object has a timer. A <code>Timer</code> object records the current time when it is started and stopped, and returns their difference when asked for the elapsed time. Two after advices ensure that the timer is started when a connection is completed and stopped when it is dropped. The <code>Timing</code> aspect also declares an inter-type field <code>totalConnectTime</code> for <code>Customer</code> to store the total connection time. This field is updated by the second advice.<br /><img src="./telecom_AO_1.png" alt='timing' /></li>
+		</ul>
+		</p>
+		
+		<h1>Producer/Consumer</h1>
+		<p>
+		Analyse successive releases of <em>Producer/Consumer</em> (<a href="Producer_Consumer.zip">Producer_Consumer.zip</a>).
+		</p>
+		
+	</body>
+</html>

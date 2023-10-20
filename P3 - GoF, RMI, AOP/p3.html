@@ -1,0 +1,146 @@
+<html>
+ 
+<head>
+<title> CMSC446 Introduction To Design Patterns : Project 2 </title>
+<link rev="made" href="mailto:tarr@umbc.edu">
+</head>
+ 
+<body>
+  
+<h2> <center>Bob Tarr: CMSC446 Introduction To Design Patterns, 2006</center> </h2>
+<h2> <center><a href="http://userpages.umbc.edu/~tarr/dp/spr06/projects/Project2.html">RMI Auction Server Project</a></center></h2>
+<hr noshade size=4 width=100%>
+ 
+<h3><center>Project Description</center></h3>
+In this project, you will be implementing a simple auction system.
+The "auction server" and the "auction client" will be implemented using RMI.
+The server will be used to maintain a list of items available for 
+auction purchase. Clients will be allowed to make bids on available 
+items or put new items up for auction. Clients can also be notified 
+when the current bid on a particular item changes. In addition, the 
+client will be able to specify different automatic bidding strategies.
+<p>
+This application will require that both the client and server have
+remote objects. The server has a remote object which implements the
+following interface:
+ 
+<pre>
+      public interface IAuctionServer extends Remote {
+         public void placeItemForBid(String ownerName, String itemName, 
+           String itemDesc, double startBid, int auctionTime) 
+           throws RemoteException;
+         public void bidOnItem(String bidderName, String itemName, 
+           double bid) throws RemoteException;
+         public Item[] getItems() throws RemoteException;
+         public void registerListener(IAuctionListener al, String itemName) 
+           throws RemoteException
+      }
+</pre>
+ 
+<p>
+These methods do the following:
+<p>
+<ul>
+<li> <pre> public void placeItemForBid(String ownerName, String itemName, 
+           String itemDesc, double startBid, int auctionTime) </pre>
+       Puts a new item up for auction by the owner with name ownerName.  
+       The itemName argument uniquely identifies the new item to be 
+       auctioned.  If an item by that name already is up for auction
+       in the server, a RemoteException is thrown.  A description of
+       the item is given by the itemDesc argument.   The starting 
+       (minimum) bid is given by the startBid argument.  The item
+       will be available for auction for the number of seconds
+       given by the auctionTime argument.
+       <p>
+<li> <pre> public void bidOnItem(String bidderName, String itemName, double bid) </pre>
+       The bidder with name bidderName makes a new bid on the item
+       specified by the itemName argument.  The bid amount is specified 
+       by the bid argument.  For the bid to be accepted it must be higher 
+       than the current bid on the specified item, else a RemoteException 
+       is thrown.
+       <p>
+<li> <pre> public Item[] getItems() </pre> 
+       Returns an array of items available for auction.  Each Item object 
+       consists of the owner's name, item name, item description, 
+       current bid, current bidder's name and time remaining on 
+       the auction period for the item.
+       <p>
+<li> <pre> public void registerListener(IAuctionListener al, String itemName) </pre>
+       Registers a listener with the auction server for changes in the
+       item specified by the itemName argument.  Whenever the current bid 
+       on the specified item changes (or its auction period expires), the 
+       IAuctionListener is notified via its update() method.  Note that the 
+       IAuctionListener object is a remote object!
+       <p>
+</ul>
+<p>
+Any client object which desires to be notified of changes in the bid status 
+of a specific item must implement the following interface:
+ 
+<pre>
+      public interface IAuctionListener extends Remote {
+         public void update(Item item) throws RemoteException;
+      }
+</pre>
+ 
+The update() method of this interface does the following:
+<p>
+<ul>
+<li> <pre> public void update(Item item) </pre> 
+       Invoked by the auction server for each IAuctionListener which has 
+       registered to be notified of changes in the bid status of the
+       specified item.  
+       <p>
+</ul>
+<p>
+<hr noshade size=4 width=100%>
+    
+<h3><center> Project Requirements </center></h3>
+  Use the above interfaces to write a <b> working </b> version of the
+  RMI auction server application.  Implement both the server and the client
+  programs.
+<p>
+  Your project must implement the following design patterns:
+<ul>
+<li> Observer
+     <br>
+     Each item for auction is an observable object. 
+<li> Abstract Factory
+     <br>
+     Create the server object using a factory.
+<li> Singleton
+     <br>
+     Allow only one instance of the server object to be instantiated.
+<li> Strategy
+     <br>
+     Allow your client to use different automatic bidding strategies.
+     Support at least the following strategies:
+     <ul>
+     <li> Have the client specify a maximum bid amount.  If anyone
+          outbids the client, automatically bid $1.00 more than the
+          current bid, up to the maximum bid.
+     <li> Wait until the last minute of the auction period, then bid
+          100% more than the current bid.
+     </ul>
+
+</ul>
+  Feel free to use any other patterns you feel appropriate.
+<p>
+  You will need some user interface code to allow putting items up
+  for bid, bidding on items, selection of automatic bidding strategies,
+  and registration of listeners. Implement this in GUI.
+<p>
+  To make testing simpler, you may have your server object automatically
+  start with some items up for auction.  Test your application with at least
+  three auction items, two clients and the server.
+<p>
+  Your project code must also be well documented and use a reasonable
+  indentation style.  In particular, places where design patterns are
+  implemented should be noted in the code.
+
+ 
+</body>
+ 
+</html>
+ 
+

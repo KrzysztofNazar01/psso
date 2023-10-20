@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+    <head>
+       <title>Lab 1</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </head>
+    <body style="max-width:600px;">
+
+		<h1>I. Prototype</h1>
+		<p>Zapoznać się z dotychczasową implementacją wzorca Prototype (<a href="./prototype_OO_stud.zip">prototype_OO_stud.zip</a>). Aby zaimportować archiwum pod Eclipse należy wybrać: <code>File->Import...->General->Existing Projects into Workspace->Select archive file</code>.<br/>
+		Stworzyć interfejs <code>IPrototype</code> wyposarzony w domyślne implementacje <code>shallowClone()</code> oraz <code>deepClone()</code> (wykorzystać <em>default methods</em> wprowadzone w Java 8).<br/>
+		Zmodyfikować klasę <code>Car</code> w taki sposób, aby zamiast dziedziczć po klasie <code>Prototype</code>, implementować interfejs <code>IPrototype</code>.<br/>
+		Napisać testy <em>JUnit</em> weryfikujące poprawne działanie metod kopiujących na obiektach <code>Car</code>.
+		</p>
+		
+		<h1>II. Observer</h1>
+		<p>Zapoznać się z programem <em>Game of Life</em> (<a href="./Game_of_Life.zip">Game_of_Life.zip</a>). Zrefaktoryzować program do postaci przedstawionej na poniższym diagramie wykorzystując wzorzec Observer.
+		<img src="./Game_of_Life_with_Observer.jpg" alt='Game_of_Life_with_Observer' /></p>
+		
+		
+	</body>
+</html>
+

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+    <head>
+       <title>Homework 1</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    </head>
+    <body style="max-width:600px;">
+		<h1>Dokumentacja</h1>
+		<ul>
+			<li><a href="http://www.informit.com/store/java-design-patterns-a-tutorial-9780201485394
+">Implementacje GoF w Javie (zakładka Downloads)</a></li>
+			<li><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/
+">Implementacje GoF w JS</a></li>
+		</ul>
+			
+		<h1>I. Composite & Visitor</h1>
+		<h2>Opis zadania</h2>
+		<p>Zapoznać się z implementacją Binary expression tree bez wykorzystania wzorca Visitor, ale z wykorzystaniem wzorca Composite (<a href="./nonpattern.zip">nonpattern.zip</a>). Dokończyć implementację operacji inFixPrint() w taki sposób, aby wywołana na korzeniu wydrukowała wyrażenie reprezentowane przez dane drzewo w postaci infix'owej. Następnie przyrostowo (implementacja przyrostowa oznacza, że na danym etapie nie wiemy jakie będą kolejne rozszerzenia) rozszerzyć funkcjonalność drzewa o operacje evaluate(), postFixPrint(), preFixPrint() oraz interpretację nowego operatora - reszta z dzielenia (%). Zastanowić się nad potencjalnymi korzyściami oraz kosztami zastosowania zasady projektowej open/closed. Następnie zaimplementować wersję bazową programu z wykorzystaniem wzorca Visitor. Metodę Parser::parse() zaimplementować tak, aby tworzyła węzły reprezentujące konkretne operacje (np. AdditionNode; patrz diagram poniżej), a nie jak poprzednio ogólne węzły typu BinaryTreeNode. Inkrementalnie dodać funkcjonalność z wersji bez wzorca.
+		<br/>
+		<img src="./VisitorPattern.jpg" alt='VisitorPattern' />
+		</p>
+		
+		<h2>Punktacja</h2>
+		<ul>
+			<li>Rozszerzenie wersji bazowej bez wykorzystania wzorca Visitor 
+				<ol>
+					<li>implementacja operacji inFixPrint() (0,25 pkt)</li>
+					<li>implementacja operacji evaluate() (0,25 pkt)</li>					
+					<li>implementacja operacji postFixPrint() (0,25 pkt)</li>
+					<li>implementacja operacji preFixPrint() (0,25 pkt)</li>
+					<li>rozszerzenie programu o interpretację operatora % (modulo - reszta z dzielenia) (0,25 pkt)</li>
+				</ol>
+			</li>
+			<li>Implementacja Binary expression tree z wykorzystaniem wzorca Visitor
+				<ol>
+					<li>implementacja wersji bazowej (1 pkt)</li>
+					<li>implementacja InFixPrintVisitor (0,25 pkt)</li>
+					<li>implementacja EvaluateVisitor (0,5 pkt)</li>					
+					<li>implementacja PostFixPrintVisitor (0,25 pkt)</li>
+					<li>implementacja PreFixPrintVisitor (0,25 pkt)</li>
+					<li>rozszerzenie programu o interpretację operatora % (modulo - reszta z dzielenia) (0,5 pkt)</li>
+				</ol>
+			</li>			
+		</ul>
+
+		<h1>II. Decorator</h1>
+		<h2>Opis zadania</h2>
+		<p>Przygotować implementację algorytmu prostej <a href="http://www.codeproject.com/Articles/223610/A-Simple-String-Compression-Algorithm">kompresji/dekompresji</a> oraz algorytmu <a href="./cipher.pdf">symetrycznego szyfru strumieniowego</a>. Wykorzystując wzorzec Dekoratora zaimplementować klasy <code>PackerOutputStream, UnpackerInputStream, CipherInputStream, CipherOutputStream</code>.<br />
+		Klasy <code>CipherInputStream</code> oraz <code>CipherOutputStream</code> powinny używać identycznego klucza domyślnego jeśli klucz nie zostanie przekazany w konstruktorze.<br />
+		Klasy <code>java.io.FilterOutputStream</code> oraz <code>java.io.FilterInputStream</code> pełnią rolę dekoratorów i trzymają referencję na fizyczny strumień, który pełni rolę komponentu (patrz diagram z wykładu). Z kolei klasy, które mają zostać zaimplementowane pełnią rolę konkretnych dekoratorów.		
+		</p>
+		<h2>Punktacja</h2>
+		<ul>
+			<li>implementacja i demonstracja CipherOutputStream oraz CipherInputStream (2,5 pkt)</li>
+			<li>implementacja i demonstracja PackerOutputStream oraz UnpackerInputStream (2,5 pkt)</li>			
+			<li>demonstracja całości jako jednego strumienia, który pakuje i szyfruje oraz drugiego, który deszyfruje i rozpakowuje (1 pkt)</li>					
+		</ul>	
+		<p>Warunkiem koniecznym zdobycia punktów jest spełnenie odpowiednich testów JUnit (<a href="./CipherPacker_stud.zip">CipherPacker_stud.zip</a>).</p>
+	</body>
+</html>

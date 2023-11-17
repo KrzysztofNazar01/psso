@@ -24,6 +24,6 @@ public class TimingLongDistance extends LongDistance{
         ((TimingCustomer) caller).addConnectTime(getTime());
         ((TimingCustomer) receiver).addConnectTime(getTime());
         ((TimingCustomer) caller).addCharge(getTime(), Billing.LONG_DISTANCE_RATE);
-        //    ((TimingCustomer) receiver).addCharge(getTime(), Billing.LONG_DISTANCE_RATE);
+        ((TimingCustomer) receiver).addCharge(getTime(), Billing.LONG_DISTANCE_RATE);
     }
 }

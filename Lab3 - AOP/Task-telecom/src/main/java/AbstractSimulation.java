@@ -10,6 +10,10 @@ public abstract class AbstractSimulation {
         TimingCustomer mik = new TimingCustomer("Mik", 650);
         TimingCustomer crista = new TimingCustomer("Crista", 415);
 
+        report(jim);
+        report(crista);
+        report(mik);
+
         say("jim calls mik...");
         Call c1 = jim.call(mik);
         wait(1);
@@ -19,6 +23,10 @@ public abstract class AbstractSimulation {
         say("jim hangs up...");
         jim.hangup(c1);
 
+        report(jim);
+        report(crista);
+        report(mik);
+
         say("jim calls crista...");
         Call c2 = jim.call(crista);
         say("crista accepts...");
@@ -27,9 +35,16 @@ public abstract class AbstractSimulation {
         say("crista hangs up...");
         crista.hangup(c2);
 
+        report(jim);
+        report(crista);
+        report(mik);
+
+        say("crista calls mik...");
         Call c3 = crista.call(mik);
+        say("mik accepts...");
         mik.pickup(c3);
         wait(2);
+        say("mik hangs up...");
         mik.hangup(c3);
 
         report(jim);

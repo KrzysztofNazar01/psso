@@ -7,9 +7,9 @@ import java.util.Vector;
  */
 public class Customer {
 
-    private String name;
-    private int areacode;
-    private Vector<Call> calls = new Vector<Call>();
+    private final String name;
+    private final int areaCode;
+    private final Vector<Call> calls = new Vector<>();
 
     /**
      * unregister a call
@@ -28,30 +28,30 @@ public class Customer {
     /**
      * Make a new customer with given name
      */
-    public Customer(String name, int areacode) {
+    public Customer(String name, int areaCode) {
         this.name = name;
-        this.areacode = areacode;
+        this.areaCode = areaCode;
     }
 
     /**
      * String rendition of customer
      */
     public String toString() {
-        return name + "(" + areacode + ")";
+        return name + "(" + areaCode + ")";
     }
 
     /**
      * what area is the customer in?
      */
-    public int getAreacode(){
-        return areacode;
+    public int getAreaCode(){
+        return areaCode;
     }
 
     /**
      * Is the other customer in the same area?
      */
     public boolean localTo(Customer other){
-        return areacode == other.areacode;
+        return areaCode == other.areaCode;
     }
 
     /**

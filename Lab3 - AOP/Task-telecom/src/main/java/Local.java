@@ -5,4 +5,3 @@ public class Local extends Connection {
                 a + " to " + b + "]");
     }
 }
-

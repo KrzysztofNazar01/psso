@@ -10,6 +10,8 @@ public class BasicSimulation extends AbstractSimulation {
         simulation.run();
     }
 
-    protected void report(Customer c) { }
+    protected void report(TimingCustomer c) {
+        System.out.println(c + " has been connected for " + c.getTotalConnectTime() + " seconds");
+    }
 
 }

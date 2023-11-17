@@ -15,17 +15,11 @@ public class Call {
      * with a new connection. This should really only be
      * called by Customer.call(..)
      */
+
     public Call(Customer caller, Customer receiver) {
-        //this.caller = caller;
-        //this.receiver = receiver;
-        Connection c;
-        if (receiver.localTo(caller)) {
-            c = new Local(caller, receiver);
-        } else {
-            c = new LongDistance(caller, receiver);
-        }
-        connections.addElement(c);
+
     }
+
 
     /**
      * picking up a call completes the current connection

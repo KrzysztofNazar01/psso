@@ -1,21 +1,3 @@
-/*
-
-Copyright (c) Xerox Corporation 1998-2002.  All rights reserved.
-
-Use and copying of this software and preparation of derivative works based
-upon this software are permitted.  Any distribution of this software or
-derivative works must comply with all applicable United States export control
-laws.
- 
-This software is made available AS IS, and Xerox Corporation makes no warranty
-about the software, its performance or its conformity to any specification.
-
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-
-*/
-
 import java.util.Vector;
 
 /**
@@ -25,51 +7,51 @@ import java.util.Vector;
  */
 public class Customer {
 
-    private final String name;
-    private final int areaCode;
-    private final Vector<Call> calls = new Vector<>();
+    private String name;
+    private int areacode;
+    private Vector<Call> calls = new Vector<Call>();
 
     /**
      * unregister a call
      */
     protected void removeCall(Call c){
-    	calls.removeElement(c);
+        calls.removeElement(c);
     }
 
     /**
      * register a call
      */
     protected void addCall(Call c){
-    	calls.addElement(c);
+        calls.addElement(c);
     }
 
     /**
      * Make a new customer with given name
      */
-    public Customer(String name, int areaCode) {
+    public Customer(String name, int areacode) {
         this.name = name;
-        this.areaCode = areaCode;
+        this.areacode = areacode;
     }
 
     /**
      * String rendition of customer
      */
     public String toString() {
-        return name + "(" + areaCode + ")";
+        return name + "(" + areacode + ")";
     }
 
     /**
      * what area is the customer in?
      */
-    public int getAreaCode(){
-    	return areaCode;
+    public int getAreacode(){
+        return areacode;
     }
 
     /**
      * Is the other customer in the same area?
      */
     public boolean localTo(Customer other){
-    	return areaCode == other.areaCode;
+        return areacode == other.areacode;
     }
 
     /**
@@ -93,8 +75,8 @@ public class Customer {
      * hang up a call
      */
     public void hangup(Call call) {
-		call.hangup(this);
-		removeCall(call);
+        call.hangup(this);
+        removeCall(call);
     }
 
     /**
@@ -106,7 +88,7 @@ public class Customer {
      * POST: call1 includes all customers connected by call1@pre and call2@pre
      */
     public void merge(Call call1, Call call2){
-		call1.merge(call2);
-		removeCall(call2);
+        call1.merge(call2);
+        removeCall(call2);
     }
 }

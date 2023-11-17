@@ -1,21 +1,3 @@
-/*
-
-Copyright (c) Xerox Corporation 1998-2002.  All rights reserved.
-
-Use and copying of this software and preparation of derivative works based
-upon this software are permitted.  Any distribution of this software or
-derivative works must comply with all applicable United States export control
-laws.
-
-This software is made available AS IS, and Xerox Corporation makes no warranty
-about the software, its performance or its conformity to any specification.
-
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-
-*/
-
 
 public abstract class AbstractSimulation {
 
@@ -29,6 +11,10 @@ public abstract class AbstractSimulation {
         Customer mik = new Customer("Mik", 650);
         Customer crista = new Customer("Crista", 415);
 
+        report(jim);
+        report(crista);
+        report(mik);
+
         say("jim calls mik...");
         Call c1 = jim.call(mik);
         wait(1);
@@ -38,6 +24,10 @@ public abstract class AbstractSimulation {
         say("jim hangs up...");
         jim.hangup(c1);
 
+        report(jim);
+        report(crista);
+        report(mik);
+
         say("jim calls crista...");
         Call c2 = jim.call(crista);
         say("crista accepts...");
@@ -45,11 +35,22 @@ public abstract class AbstractSimulation {
         wait(2);
         say("crista hangs up...");
         crista.hangup(c2);
-        
+
         report(jim);
         report(crista);
         report(mik);
 
+        say("crista calls mik...");
+        Call c3 = crista.call(mik);
+        say("mik accepts...");
+        mik.pickup(c3);
+        wait(2);
+        say("mik hangs up...");
+        mik.hangup(c3);
+
+        report(jim);
+        report(crista);
+        report(mik);
     }
 
     /**
@@ -60,8 +61,8 @@ public abstract class AbstractSimulation {
     protected static void wait(int seconds) {
         Object dummy = new Object();
         synchronized (dummy) {
-            try {dummy.wait(seconds* 1000L); }
-            catch (Exception ignored) {}
+            try {dummy.wait(seconds*1000); }
+            catch (Exception e) {}
         }
     }
 
@@ -69,7 +70,7 @@ public abstract class AbstractSimulation {
      * Put a message on standard output
      */
     protected static void say(String s){
-    	System.out.println(s);
+        System.out.println(s);
     }
 
 }

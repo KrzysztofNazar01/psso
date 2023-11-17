@@ -1,22 +1,3 @@
-/*
-
-Copyright (c) Xerox Corporation 1998-2002.  All rights reserved.
-
-Use and copying of this software and preparation of derivative works based
-upon this software are permitted.  Any distribution of this software or
-derivative works must comply with all applicable United States export control
-laws.
- 
-This software is made available AS IS, and Xerox Corporation makes no warranty
-about the software, its performance or its conformity to any specification.
-
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-|<---            this code is formatted to fit into 80 columns             --->|
-
-*/
-
-
 /**
  * Connections are circuits between customers
  * There are two kinds: local and long distance
@@ -32,7 +13,7 @@ public abstract class Connection {
     private int state = PENDING;
 
     /**
-     * Create a new Connection between a and b
+     * Creatte a new Connection between a and b
      */
     Connection(Customer a, Customer b) {
         this.caller = a;
@@ -43,7 +24,7 @@ public abstract class Connection {
      * what is the state of the connection?
      */
     public int getState(){
-    	return state;
+        return state;
     }
 
     /**
@@ -61,7 +42,7 @@ public abstract class Connection {
      * and the connection should now complete itself and start passing data.
      */
     void complete() {
-        state = COMPLETE;        
+        state = COMPLETE;
         System.out.println("connection from "+ caller+ " to "+ receiver +" completed");
     }
 
@@ -70,7 +51,7 @@ public abstract class Connection {
      * free up any resources the connection was consuming.
      */
     void drop() {
-    	state = DROPPED;
+        state = DROPPED;
         System.out.println("connection from "+ caller+ " to "+ receiver +" dropped");
     }
 
@@ -78,10 +59,8 @@ public abstract class Connection {
      * Is customer c connected by this connection?
      */
     public boolean connects(Customer c){
-    	return (caller == c || receiver == c);
+        return (caller == c || receiver == c);
     }
 
 }
-
-
 

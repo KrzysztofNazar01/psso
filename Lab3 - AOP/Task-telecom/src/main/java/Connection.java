@@ -5,9 +5,11 @@
  */
 public abstract class Connection {
 
+    // read only variables
     public static final int PENDING = 0;
     public static final int COMPLETE = 1;
     public static final int DROPPED = 2;
+
 
     Customer caller, receiver;
     private int state = PENDING;

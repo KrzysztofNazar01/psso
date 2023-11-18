@@ -3,8 +3,8 @@ public class TimingLocal extends Local{
 
     protected long stopTime;
 
-    public TimingLocal(TimingCustomer caller, TimingCustomer receiver) {
-        super(caller, receiver);
+    public TimingLocal(TimingCustomer callingCustomer, TimingCustomer receiver) {
+        super(callingCustomer, receiver);
     }
 
     public long getTime() {
@@ -17,6 +17,9 @@ public class TimingLocal extends Local{
         startTime = System.nanoTime();
     }
 
+    /**
+     * Drop connection and update connection time and charge.
+     */
     @Override
     void drop() {
         super.drop();

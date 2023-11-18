@@ -2,8 +2,13 @@ public class TimingCustomer extends Customer{
 
     private long totalConnectTime;
     private long totalCharge;
-    public TimingCustomer(String name, int areacode) {
-        super(name, areacode);
+
+    /**
+     * Calculate connection time and charge
+     * for a call made by the customer.
+     */
+    public TimingCustomer(String name, int areaCode) {
+        super(name, areaCode);
         totalConnectTime = 0;
         totalCharge = 0;
     }
@@ -14,17 +19,17 @@ public class TimingCustomer extends Customer{
         return timingCall;
     }
 
-    public void addConnectTime(long connectionTime) {
-        totalConnectTime += connectionTime;
-    }
-    public void addCharge(long connectionTime, Integer cost) {
-        totalCharge += cost * connectionTime;
-    }
-
     public long getTotalConnectTime() {
         return totalConnectTime;
     }
+    public void addConnectTime(long connectionTime) {
+        totalConnectTime += connectionTime;
+    }
+
     public long getTotalCharge() {
         return totalCharge;
+    }
+    public void addCharge(long connectionTime, Integer cost) {
+        totalCharge += cost * connectionTime;
     }
 }

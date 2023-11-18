@@ -6,9 +6,9 @@ public abstract class AbstractSimulation {
      * Creates objects and puts them to work.
      */
     public void run() {
-        TimingCustomer jim = new TimingCustomer("Jim", 650);
-        TimingCustomer mik = new TimingCustomer("Mik", 650);
-        TimingCustomer crista = new TimingCustomer("Crista", 415);
+        TimingCustomer jim = new TimingCustomer("Jim", 123);
+        TimingCustomer mik = new TimingCustomer("Mik", 456);
+        TimingCustomer crista = new TimingCustomer("Crista", 789);
 
         report(jim);
         report(crista);
@@ -19,7 +19,7 @@ public abstract class AbstractSimulation {
         wait(1);
         say("mik accepts...");
         mik.pickup(c1);
-        wait(4);
+        wait(2);
         say("jim hangs up...");
         jim.hangup(c1);
 
@@ -29,9 +29,10 @@ public abstract class AbstractSimulation {
 
         say("jim calls crista...");
         Call c2 = jim.call(crista);
+        wait(1);
         say("crista accepts...");
         crista.pickup(c2);
-        wait(2);
+        wait(3);
         say("crista hangs up...");
         crista.hangup(c2);
 
@@ -41,9 +42,10 @@ public abstract class AbstractSimulation {
 
         say("crista calls mik...");
         Call c3 = crista.call(mik);
+        wait(1);
         say("mik accepts...");
         mik.pickup(c3);
-        wait(2);
+        wait(4);
         say("mik hangs up...");
         mik.hangup(c3);
 

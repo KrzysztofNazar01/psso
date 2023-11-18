@@ -7,7 +7,7 @@ import java.util.Enumeration;
  */
 public class Call {
 
-    //private Customer caller, receiver;
+    private Customer caller, receiver;
     protected Vector<Connection> connections = new Vector<Connection>();
 
     /**
@@ -17,12 +17,13 @@ public class Call {
      */
 
     public Call(Customer caller, Customer receiver) {
-
+        this.caller = caller;
+        this.receiver = receiver;
     }
 
 
     /**
-     * picking up a call completes the current connection
+     * Picking up a call completes the current connection
      * (this means that you shouldn't merge calls until
      * they are completed)
      */
@@ -40,7 +41,7 @@ public class Call {
     }
 
     /**
-     * hanging up a call drops the connection
+     * Hanging up a call drops the connection
      */
     public void hangup(Customer c) {
         for(Enumeration<Connection> e = connections.elements(); e.hasMoreElements();) {
@@ -49,7 +50,7 @@ public class Call {
     }
 
     /**
-     * is Customer c one of the customers in this call?
+     * Is Customer c one of the customers in this call?
      */
     public boolean includes(Customer c){
         boolean result = false;

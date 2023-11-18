@@ -1,7 +1,7 @@
 public class BillingSimulation extends AbstractSimulation {
 
     public static void main(String[] args){
-        System.out.println("\n... Billing simulation 2 ...\n");
+        System.out.println("\n------Billing simulation------\n");
         simulation = new BillingSimulation();
         simulation.run();
     }

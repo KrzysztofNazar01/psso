@@ -6,6 +6,7 @@
 public class BasicSimulation extends AbstractSimulation {
 
     public static void main(String[] args){
+        System.out.println("\n------Basic simulation------\n");
         simulation = new BasicSimulation();
         simulation.run();
     }

@@ -8,15 +8,25 @@ public class TimingLongDistance extends LongDistance{
     }
 
     public long getTime() {
-        return (stopTime - startTime) / 1000000000;
+        // Get the time in nanoseconds
+        long elapsedTime = stopTime - startTime;
+
+        // Convert nanoseconds to seconds
+        long seconds = elapsedTime / 1_000_000_000;
+
+        return seconds;
     }
 
+    // Complete connection and set start time of connection
     @Override
     void complete() {
         super.complete();
         startTime = System.nanoTime();
     }
 
+    /**
+     * Drop connection and update connection time and charge.
+     */
     @Override
     void drop() {
         super.drop();
